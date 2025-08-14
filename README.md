@@ -27,7 +27,7 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 │   └── unsw_flows_labelled.csv   # Example training data (flows with labels)
 ├── artifacts/                # (created after training)
 │   ├── unsw_preprocessor.pkl
-│   ├── unsw_model.pkl
+│   ├── unsw_model.pkl // unsw_clf.pkl
 │   ├── unsw_iso.pkl
 │   ├── unsw_iso_meta.json
 │   ├── metrics.json
