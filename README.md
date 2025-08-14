@@ -20,7 +20,7 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 - One-click UI: Upload PCAP/PCAPNG or CSV, triage by risk, download results. :contentReference[oaicite:7]{index=7}
 
 📦 What’s in this repo
-
+```
 ├── project1.py               # Streamlit app (run the UI)  ← app entrypoint
 ├── trainmodel.py             # Train RF + ISO, save artifacts & metrics
 ├── data/
