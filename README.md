@@ -1,43 +1,36 @@
 Here’s a complete `README.md` you can drop into your repo.
 
 ```markdown
-# Explainable Network Risk Prediction (PCAP/CSV → Flow IDS + Risk Score)
+Explainable Network Risk Prediction (PCAP/CSV → Flow IDS + Risk Score)
 
 An end-to-end, analyst-friendly pipeline that:
-- parses **PCAP/CSV** into per-flow records,
-- predicts an **attack family** with a supervised model,
-- scores **anomaly** with Isolation Forest,
-- fuses signals into a **0–100 risk score**, and
-- explains each prediction with **SHAP** inside a Streamlit UI.
+- parses PCAP/CSV into per-flow records,
+- predicts an attack family with a supervised model,
+- scores anomaly with Isolation Forest,
+- fuses signals into a 0–100 risk score, and
+- explains each prediction with SHAP inside a Streamlit UI.
 
-**App entrypoint:** `project1.py` (Streamlit) :contentReference[oaicite:0]{index=0}  
-**Training script:** `trainmodel.py` (artifacts + metrics) :contentReference[oaicite:1]{index=1}
+App entrypoint: project1.py (Streamlit) :contentReference[oaicite:0]{index=0}  
+Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1]{index=1}
 
----
+✨ Features
 
-## ✨ Features
+- Flow-based schema with timing/volume + TCP flag features (duration, packets, bytes, PPS, BPP, IAT mean/std, SYN/ACK/RST/FIN, ports, protocol). :contentReference[oaicite:2]{index=2}  
+- Supervised classifier: Random Forest (`model.pkl`). :contentReference[oaicite:3]{index=3}  
+- Unsupervised anomaly: Isolation Forest (`iso.pkl`) + learned threshold (`iso_meta.json`). :contentReference[oaicite:4]{index=4}  
+- Transparent risk fusion: `0.7×class_risk + 0.3×anomaly_risk + heuristics` → 0–100. :contentReference[oaicite:5]{index=5}  
+- Explainability: SHAP on the **transformed** design matrix with robust fallbacks. :contentReference[oaicite:6]{index=6}  
+- One-click UI: Upload PCAP/PCAPNG or CSV, triage by risk, download results. :contentReference[oaicite:7]{index=7}
 
-- **Flow-based schema** with timing/volume + TCP flag features (duration, packets, bytes, PPS, BPP, IAT mean/std, SYN/ACK/RST/FIN, ports, protocol). :contentReference[oaicite:2]{index=2}  
-- **Supervised classifier**: Random Forest (`model.pkl`). :contentReference[oaicite:3]{index=3}  
-- **Unsupervised anomaly**: Isolation Forest (`iso.pkl`) + learned threshold (`iso_meta.json`). :contentReference[oaicite:4]{index=4}  
-- **Transparent risk fusion**: `0.7×class_risk + 0.3×anomaly_risk + heuristics` → 0–100. :contentReference[oaicite:5]{index=5}  
-- **Explainability**: SHAP on the **transformed** design matrix with robust fallbacks. :contentReference[oaicite:6]{index=6}  
-- **One-click UI**: Upload PCAP/PCAPNG or CSV, triage by risk, download results. :contentReference[oaicite:7]{index=7}
+📦 What’s in this repo
 
----
-
-## 📦 What’s in this repo
-
-```
-
-.
 ├── project1.py               # Streamlit app (run the UI)  ← app entrypoint
 ├── trainmodel.py             # Train RF + ISO, save artifacts & metrics
 ├── data/
 │   └── unsw\_flows\_labelled.csv   # Example training data (flows with labels)
 ├── artifacts/                # (created after training)
 │   ├── unsw\_preprocessor.pkl
-│   ├── unsw\_clf.pkl
+│   ├── unsw\_model.pkl
 │   ├── unsw\_iso.pkl
 │   ├── unsw\_iso\_meta.json
 │   ├── metrics.json
@@ -45,26 +38,22 @@ An end-to-end, analyst-friendly pipeline that:
 │   └── feature\_importances.csv
 └── README.md
 
-````
+Note: The app expects **ports** to be present; the trainer can work without them if your CSV lacks `src_port`/`dst_port` (it auto-detects). :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9}
 
-> **Note:** The app expects **ports** to be present; the trainer can work without them if your CSV lacks `src_port`/`dst_port` (it auto-detects). :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9}
-
----
-
-## 🚀 Quickstart
+🚀 Quickstart
 
 ### 1) Environment
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
 pip install "scikit-learn==1.4.2" "pandas==2.2.1" "numpy==1.26.4" \
             "shap==0.44.1" "streamlit==1.32.0" "joblib==1.3.2"
-````
+```
 
 ### 2) Train (creates artifacts)
 
 ```bash
-# with built-in 80/20 stratified hold-out
 python trainmodel.py \
   --train_csv data/unsw_flows_labelled.csv \
   --out_dir artifacts --basename unsw --fast --seed 42
