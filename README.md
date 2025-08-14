@@ -21,7 +21,6 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 - Transparent risk fusion: `0.7×class_risk + 0.3×anomaly_risk + heuristics` → 0–100. :contentReference[oaicite:5]{index=5}  
 - Explainability: SHAP on the **transformed** design matrix with robust fallbacks. :contentReference[oaicite:6]{index=6}  
 - One-click UI: Upload PCAP/PCAPNG or CSV, triage by risk, download results. :contentReference[oaicite:7]{index=7}
-```
 
 📦 What’s in this repo
 
@@ -38,6 +37,7 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 │   ├── confusion\_matrix.csv
 │   └── feature\_importances.csv
 └── README.md
+```
 
 Note: The app expects **ports** to be present; the trainer can work without them if your CSV lacks `src_port`/`dst_port` (it auto-detects). :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9}
 
