@@ -24,15 +24,15 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 ├── project1.py               # Streamlit app (run the UI)  ← app entrypoint
 ├── trainmodel.py             # Train RF + ISO, save artifacts & metrics
 ├── data/
-│   └── unsw\_flows\_labelled.csv   # Example training data (flows with labels)
+│   └── unsw_flows_labelled.csv   # Example training data (flows with labels)
 ├── artifacts/                # (created after training)
-│   ├── unsw\_preprocessor.pkl
-│   ├── unsw\_model.pkl
-│   ├── unsw\_iso.pkl
-│   ├── unsw\_iso\_meta.json
+│   ├── unsw_preprocessor.pkl
+│   ├── unsw_model.pkl
+│   ├── unsw_iso.pkl
+│   ├── unsw_iso_meta.json
 │   ├── metrics.json
-│   ├── confusion\_matrix.csv
-│   └── feature\_importances.csv
+│   ├── confusion_matrix.csv
+│   └── feature_importances.csv
 └── README.md
 ```
 
