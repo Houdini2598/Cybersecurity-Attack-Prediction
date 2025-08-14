@@ -21,6 +21,7 @@ Training script: trainmodel.py (artifacts + metrics) :contentReference[oaicite:1
 - Transparent risk fusion: `0.7×class_risk + 0.3×anomaly_risk + heuristics` → 0–100. :contentReference[oaicite:5]{index=5}  
 - Explainability: SHAP on the **transformed** design matrix with robust fallbacks. :contentReference[oaicite:6]{index=6}  
 - One-click UI: Upload PCAP/PCAPNG or CSV, triage by risk, download results. :contentReference[oaicite:7]{index=7}
+```
 
 📦 What’s in this repo
 
