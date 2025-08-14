@@ -1,6 +1,3 @@
-Here’s a complete `README.md` you can drop into your repo.
-
-```markdown
 Explainable Network Risk Prediction (PCAP/CSV → Flow IDS + Risk Score)
 
 An end-to-end, analyst-friendly pipeline that:
