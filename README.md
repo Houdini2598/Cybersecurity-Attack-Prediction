@@ -177,10 +177,6 @@ Place it next to `project1.py`. If missing, upload a CSV instead.&#x20;
 
 ---
 
-## 📜 License
-
-Add your chosen license (e.g., MIT) here.
-
 ## 🙌 Acknowledgments
 
 UNSW-NB15 (flows table) used for supervised training; community tools that inspired this pipeline.
